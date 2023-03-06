@@ -1,4 +1,12 @@
+"""
+Exercice 3 : Implementation of Stack using Linked List
+
+Author: Hugues Boisdon
+
+"""
+
 from exo2 import Node, LinkedList
+
 
 class Stack:
 
@@ -86,6 +94,6 @@ def syntaxValidator(filePath):
 if __name__ == '__main__':    
     print("")
 
-    syntaxValidator("exo3.txt")
+    syntaxValidator("TP1\exo3.txt")
 
     print("")

@@ -1,3 +1,11 @@
+"""
+Exercice 2 : Implementation of Circular Linked List and the Josephus Problem
+
+Author: Hugues Boisdon
+
+"""
+
+
 class Node:
 
     data = None
@@ -132,40 +140,35 @@ class CircularLinkedList :
         return ret
 
 
-def Josephus(n,k):
+def Josephus(n :int, k :int) -> list:
+    """ Implementation of the Josephus problem with circular linked list
+
+    n :       Number of soldiers
+    k :       One in k soldiers will be killed
+    return :  List of the soldiers killed in order
+    """
     permutation = []
     survivors = CircularLinkedList()
     survivors.append([i for i in range(1,n+1)])
     currentSoldier = survivors.head()
-    index = 0
 
     count = 1
     end = False
-    cheat = 0
     while not end:
         nextSoldier = currentSoldier.next()
 
-        if count == k:
-            print(f"---{currentSoldier}:{survivors.find(index)}  est mort---")
-            permutation.append(currentSoldier.data)
-            survivors.delete(index)
-            index -= 1
-            count = 1
-        else:
-            print(f"{currentSoldier}:{survivors.find(index)}")
-            count += 1
-
+        if not (currentSoldier.data in permutation):
+            if count == k:
+                permutation.append(currentSoldier.data)
+                count = 1
+            else:
+                count += 1
 
         currentSoldier = nextSoldier
-        index += 1
         if len(permutation) == n:
             end = True
-        else:
-            if (index)//survivors.size > cheat :
-                index -= 1
-                cheat += 1
 
-    print(permutation)
+    return permutation
     
 
 

@@ -1,3 +1,12 @@
+"""
+Exercice 2 : Implementation of Linked List
+
+Author: Hugues Boisdon
+
+"""
+
+
+
 class Node:
 
     data = None
@@ -29,23 +38,20 @@ class LinkedList:
 
     def insert(self, _data, k):
         self.size += 1
-        # Si notre liste est vide et qu'on veut donner la 1ere valeur
+
         if(self.isEmpty() and k == 0):
             self.head = Node(_data)
-        # Si on veut insérer a la tete
+
         elif(k == 0):
             nextNode = self.head
             self.head = Node(_data)
             (self.head).nextNode = nextNode
-        # Sinon
+
         elif k <= self.size - 1:
-            # Obtention du noeud à l'indice k-1
             previousNode = self.getPreviousNode(k)
 
-            # Obtention du noeud à l'indice k (qui deviendra k+1)
             nextNode = previousNode.nextNode
 
-            # Insertion du noeud
             previousNode.nextNode = Node(_data)
             (previousNode.nextNode).nextNode = nextNode
         else:
@@ -68,41 +74,34 @@ class LinkedList:
 
     def delete(self, k):
         ret = None
-        # Si notre liste est non vide
+
         if( not self.isEmpty()):
             self.size -= 1
-            # Si on souhaite supprimer le 1er element
+
             if(k == 0):
                 ret = self.head.data
                 self.head = (self.head).nextNode
             else :
-                # Obtention du noeud à l'indice k-1
                 previousNode = self.getPreviousNode(k)
 
-                # Obtention du noeud à l'indice k+1 (qui deviendra k)
                 nextNode = (previousNode.nextNode).nextNode
                 ret = (previousNode.nextNode).data
 
-                # Supression du noeud d'indice k
                 previousNode.nextNode = nextNode
         return ret
     
 
 
     def find(self, _data):
-        # Initialisation de la recherche
         i = -1
-        # Si la liste est non vide
+
         if( not self.isEmpty()):
             currentNode = self.head
             i = 0
-            # Si on ne trouve pas à l'indice 0
+
             if (currentNode.data != _data):
-                # Tant qu'on ne trouve pas 
                 while (currentNode.data != _data):
-                    # Si on est à la queue
                     if(currentNode.nextNode == None):
-                        # On n'a pas trouvé
                         i = -1
                         break
                     currentNode = currentNode.nextNode
@@ -111,17 +110,16 @@ class LinkedList:
 
 
 
-    # Affiche la liste dans le terminal
-    def print(self):
-        aff = "["
+    def __str__(self):
+        ret = "["
         if(not self.isEmpty()):
             currentNode = self.head
-            aff += str(currentNode.data)
+            ret += str(currentNode.data)
             while(currentNode.nextNode != None):
                 currentNode = currentNode.nextNode
-                aff += ", " + str(currentNode.data)
-        aff += "]"
-        print(aff)
+                ret += ", " + str(currentNode.data)
+        ret += "]"
+        return ret
 
 
 # Tests
@@ -132,16 +130,16 @@ if __name__ == '__main__':
     l = LinkedList()
 
     l.append(5)
-    l.print()
+    print(l)
 
     l.append("oui")
-    l.print()
+    print(l)
 
     l.append("yaya")
-    l.print()
+    print(l)
 
     l.insert("non", 15)
-
+    print(l)
 
     print("")
 

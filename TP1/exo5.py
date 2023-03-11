@@ -173,23 +173,9 @@ def Josephus(n :int, k :int) -> list:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     print("")
     
-    Josephus(41,3)
+    print(Josephus(41,3))
 
     print("")
